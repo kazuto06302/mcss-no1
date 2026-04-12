@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Slide 5 - Paper vs Spigot</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px; overflow: hidden;
+    background: #0a0e1a;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #e8eaf0;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 40% 80% at 25% 50%, rgba(255,120,50,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 80% at 75% 50%, rgba(180,100,255,0.06) 0%, transparent 50%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 39px, rgba(255,255,255,0.015) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 39px, rgba(255,255,255,0.015) 40px);
+  }
+  .accent-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #ff7832 50%, #b464ff 50%);
+  }
+  .header {
+    position: relative; z-index: 2;
+    padding: 36px 80px 0;
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: #ff7832; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 { font-size: 38px; font-weight: 900; letter-spacing: -0.5px; }
+  .sep { width: 40px; height: 3px; background: linear-gradient(90deg, #ff7832, #b464ff); border-radius: 2px; margin: 10px 0; }
+  .vs-layout {
+    position: relative; z-index: 2;
+    padding: 24px 60px 0;
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: start;
+  }
+  .side { display: flex; flex-direction: column; gap: 10px; }
+  .side-title {
+    font-size: 28px; font-weight: 900; margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .paper-side .side-title { color: #ff7832; border-color: rgba(255,120,50,0.3); }
+  .spigot-side .side-title { color: #b464ff; border-color: rgba(180,100,255,0.3); }
+  .row {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px; padding: 12px 16px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: #4a5568; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .row-value { font-size: 14px; color: #c8d0e0; font-weight: 400; line-height: 1.5; }
+  .good { color: #00c878 !important; font-weight: 700; }
+  .warn { color: #ffc832 !important; }
+  .vs-center {
+    display: flex; align-items: center; justify-content: center;
+    padding-top: 60px;
+  }
+  .vs-badge {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 700; color: #5a6478;
+  }
+  .slide-num {
+    position: absolute; bottom: 28px; right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: #3a4455; letter-spacing: 2px;
+  }
+  .lineage {
+    position: absolute; bottom: 28px; left: 80px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: #3a4455;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .lineage span { color: #4a5568; }
+  .arr { color: #2a3445; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="accent-line"></div>
+<div class="header">
+  <div class="header-tag">// game server comparison</div>
+  <h2>📄 Paper  vs  🔧 Spigot</h2>
+  <div class="sep"></div>
+</div>
+<div class="vs-layout">
+  <div class="side paper-side">
+    <div class="side-title">📄 Paper <span style="font-size:13px;font-weight:400;color:#4a5568">（推奨）</span></div>
+    <div class="row">
+      <div class="row-label">ベース</div>
+      <div class="row-value">Spigot フォーク（PaperMC チーム製）</div>
+    </div>
+    <div class="row">
+      <div class="row-label">パフォーマンス</div>
+      <div class="row-value good">チャンク生成・エンティティ処理など大幅最適化</div>
+    </div>
+    <div class="row">
+      <div class="row-label">バグ修正</div>
+      <div class="row-value good">バニラのバグを積極修正・設定で挙動変更可</div>
+    </div>
+    <div class="row">
+      <div class="row-label">設定項目</div>
+      <div class="row-value good">paper.yml / paper-world-defaults.yml で詳細設定</div>
+    </div>
+    <div class="row">
+      <div class="row-label">プロキシ連携</div>
+      <div class="row-value good">Velocity Modern Forwarding ネイティブ対応</div>
+    </div>
+    <div class="row">
+      <div class="row-label">プラグイン互換</div>
+      <div class="row-value good">Bukkit / Spigot API 完全互換＋独自 API 追加</div>
+    </div>
+  </div>
+
+  <div class="vs-center">
+    <div class="vs-badge">VS</div>
+  </div>
+
+  <div class="side spigot-side">
+    <div class="side-title">🔧 Spigot <span style="font-size:13px;font-weight:400;color:#4a5568">（安定版）</span></div>
+    <div class="row">
+      <div class="row-label">ベース</div>
+      <div class="row-value">CraftBukkit フォーク（SpigotMC チーム製）</div>
+    </div>
+    <div class="row">
+      <div class="row-label">パフォーマンス</div>
+      <div class="row-value warn">バニラ比では改善あり・Paperより劣る部分も</div>
+    </div>
+    <div class="row">
+      <div class="row-label">バグ修正</div>
+      <div class="row-value warn">最小限・バニラ挙動を優先する傾向</div>
+    </div>
+    <div class="row">
+      <div class="row-label">設定項目</div>
+      <div class="row-value">spigot.yml のみ（設定の自由度はやや低め）</div>
+    </div>
+    <div class="row">
+      <div class="row-label">プロキシ連携</div>
+      <div class="row-value warn">BungeeCord の Legacy Forwarding のみ</div>
+    </div>
+    <div class="row">
+      <div class="row-label">プラグイン互換</div>
+      <div class="row-value good">Bukkit / Spigot API 対応（長年の資産）</div>
+    </div>
+  </div>
+</div>
+<div class="lineage">
+  <span>Vanilla</span><span class="arr">→</span>
+  <span>CraftBukkit</span><span class="arr">→</span>
+  <span>Spigot</span><span class="arr">→</span>
+  <span style="color:#ff7832">Paper</span><span class="arr">→</span>
+  <span>Purpur / Folia ...</span>
+</div>
+<div class="slide-num">05 / 08</div>
+</body>
+</html>

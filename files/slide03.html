@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Slide 3 - ソフトウェア比較</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px; overflow: hidden;
+    background: #0a0e1a;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #e8eaf0;
+  }
+  .bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,200,120,0.05) 0%, transparent 50%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 39px, rgba(255,255,255,0.015) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 39px, rgba(255,255,255,0.015) 40px);
+  }
+  .accent-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #00c878, #00aaff);
+  }
+  .header {
+    position: relative; z-index: 2;
+    padding: 36px 80px 0;
+  }
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: #00c878; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 { font-size: 38px; font-weight: 900; letter-spacing: -0.5px; }
+  h2 span { color: #00c878; }
+  .sep { width: 40px; height: 3px; background: #00c878; border-radius: 2px; margin: 10px 0; }
+  .cards {
+    position: relative; z-index: 2;
+    padding: 24px 60px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .card {
+    border-radius: 12px; padding: 22px 20px;
+    border: 1px solid;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card.velocity {
+    background: rgba(0,200,120,0.06);
+    border-color: rgba(0,200,120,0.25);
+  }
+  .card.velocity::before { background: #00c878; }
+  .card.bungee {
+    background: rgba(255,200,50,0.06);
+    border-color: rgba(255,200,50,0.25);
+  }
+  .card.bungee::before { background: #ffc832; }
+  .card.paper {
+    background: rgba(255,120,50,0.06);
+    border-color: rgba(255,120,50,0.25);
+  }
+  .card.paper::before { background: #ff7832; }
+  .card.spigot {
+    background: rgba(180,100,255,0.06);
+    border-color: rgba(180,100,255,0.25);
+  }
+  .card.spigot::before { background: #b464ff; }
+  .card-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 8px; opacity: 0.7;
+  }
+  .velocity .card-category { color: #00c878; }
+  .bungee .card-category { color: #ffc832; }
+  .paper .card-category { color: #ff7832; }
+  .spigot .card-category { color: #b464ff; }
+  .card-name {
+    font-size: 26px; font-weight: 900; margin-bottom: 4px;
+  }
+  .velocity .card-name { color: #00c878; }
+  .bungee .card-name { color: #ffc832; }
+  .paper .card-name { color: #ff7832; }
+  .spigot .card-name { color: #b464ff; }
+  .card-sub { font-size: 12px; color: #5a6478; margin-bottom: 16px; font-family: 'JetBrains Mono', monospace; }
+  .card-desc { font-size: 13px; color: #8892a4; line-height: 1.65; }
+  .card-badge {
+    display: inline-block; margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; padding: 4px 10px; border-radius: 3px;
+    font-weight: 700; letter-spacing: 1px;
+  }
+  .velocity .card-badge { background: rgba(0,200,120,0.15); color: #00c878; }
+  .bungee .card-badge { background: rgba(255,200,50,0.15); color: #ffc832; }
+  .paper .card-badge { background: rgba(255,120,50,0.15); color: #ff7832; }
+  .spigot .card-badge { background: rgba(180,100,255,0.15); color: #b464ff; }
+  .card-icon { font-size: 32px; margin-bottom: 12px; }
+  .slide-num {
+    position: absolute; bottom: 28px; right: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: #3a4455; letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="accent-line"></div>
+<div class="header">
+  <div class="header-tag">// overview</div>
+  <h2>4つのソフトウェアの<span>全体像</span></h2>
+  <div class="sep"></div>
+</div>
+<div class="cards">
+  <div class="card velocity">
+    <div class="card-icon">⚡</div>
+    <div class="card-category">Proxy Server</div>
+    <div class="card-name">Velocity</div>
+    <div class="card-sub">by PaperMC</div>
+    <div class="card-desc">現代型の高性能プロキシ。BungeeCordの後継として開発され、セキュリティと速度に優れる。現在の主流。</div>
+    <span class="card-badge">推奨 ✓</span>
+  </div>
+  <div class="card bungee">
+    <div class="card-icon">🔗</div>
+    <div class="card-category">Proxy Server</div>
+    <div class="card-name">BungeeCord</div>
+    <div class="card-sub">by md_5</div>
+    <div class="card-desc">マルチサーバープロキシの元祖。長年の実績があるが、現在はレガシーとして扱われることが多い。</div>
+    <span class="card-badge">レガシー</span>
+  </div>
+  <div class="card paper">
+    <div class="card-icon">📄</div>
+    <div class="card-category">Game Server</div>
+    <div class="card-name">Paper</div>
+    <div class="card-sub">by PaperMC</div>
+    <div class="card-desc">Spigotから派生した高性能ゲームサーバー。パフォーマンス最適化・セキュリティが充実。現在の主流。</div>
+    <span class="card-badge">推奨 ✓</span>
+  </div>
+  <div class="card spigot">
+    <div class="card-icon">🔧</div>
+    <div class="card-category">Game Server</div>
+    <div class="card-name">Spigot</div>
+    <div class="card-sub">by SpigotMC</div>
+    <div class="card-desc">CraftBukkit後継の定番ゲームサーバー。幅広いプラグインに対応するが、Paperに多くで劣る。</div>
+    <span class="card-badge">安定版</span>
+  </div>
+</div>
+<div class="slide-num">03 / 08</div>
+</body>
+</html>
